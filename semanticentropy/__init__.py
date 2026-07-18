@@ -17,7 +17,7 @@ equivalence check, and ships a benchmark showing it separates confident correct
 answers from hallucinated ones.
 """
 from semanticentropy.cluster import cluster_by_meaning
-from semanticentropy.entropy import SemanticEntropy, EntropyResult
+from semanticentropy.entropy import EntropyResult, SemanticEntropy
 
 __all__ = ["cluster_by_meaning", "SemanticEntropy", "EntropyResult"]
 
