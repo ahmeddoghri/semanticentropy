@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "semanticentropy"
+version = "0.1.0"
+description = "Catch hallucinations by asking the model the same thing five times and clustering the answers by meaning. Based on Farquhar et al., Nature 2024."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Ahmed Doghri" }]
+keywords = ["llm", "hallucination", "uncertainty", "semantic-entropy", "ai-safety", "evaluation", "ai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.6"]
+
+[project.urls]
+Homepage = "https://github.com/ahmeddoghri/semanticentropy"
+
+[tool.hatch.build.targets.wheel]
+packages = ["semanticentropy"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E9", "F", "I"]
