@@ -12,11 +12,13 @@
 > score 0.90. No labels, no judge model, just the model contradicting itself.**
 > See the separation: `python -m semanticentropy.eval`.
 
-Here is a fact worth sitting with: a model that knows the answer says the same
-thing every time you ask it, worded differently. A model that is confabulating
-gives you a different name, date, or number each time, with identical
-confidence in its voice. That instability is not a vibe, it is measurable, and
-you do not need a labeled dataset or a second model to grade the first one.
+Here's a fact worth sitting with, ideally with a coffee: a model that knows
+the answer says the same thing every time you ask it, worded differently. A
+model that's confabulating gives you a different name, date, or number each
+time, with the exact same unbothered confidence in its voice either way,
+because confidence was never actually tied to being right. That instability
+isn't a vibe, it's measurable, and you don't need a labeled dataset or a
+second, more expensive model to babysit the first one.
 
 This is the method from Farquhar et al. (Nature, 2024): sample the model several
 times at temperature, cluster the samples by meaning rather than by exact
@@ -24,10 +26,12 @@ string, and measure entropy over the clusters. One cluster means the model is
 consistent. Several clusters, roughly even in size, means the model is guessing.
 
 The clustering step is the whole trick and the part every naive implementation
-gets wrong. "Paris" and "It is Paris" are the same answer worded differently. If
-you count them as two you smear the signal and hallucinations stop looking any
-different from confidence. semanticentropy clusters by content, not by string,
-using a transparent containment check you can read start to finish.
+botches. "Paris" and "It is Paris" are the same answer said two different
+ways by someone in a hurry. Count them as two distinct answers and you smear
+the signal until hallucinations stop looking any different from confidence,
+which defeats the entire point. semanticentropy clusters by content, not by
+string, using a transparent containment check you can read start to finish
+without a linguistics degree.
 
 ---
 
