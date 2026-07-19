@@ -3,14 +3,16 @@
 **Catch hallucinations by asking the model the same thing five times and clustering the answers by meaning.**
 
 ![CI](https://github.com/ahmeddoghri/semanticentropy/actions/workflows/ci.yml/badge.svg)
-![tests](https://img.shields.io/badge/tests-10%20passing-brightgreen)
+![tests](https://img.shields.io/badge/tests-18%20passing-brightgreen)
 ![python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![deps](https://img.shields.io/badge/runtime%20deps-none-success)
 ![license](https://img.shields.io/badge/license-MIT-black)
 
-> **Consistent answers score 0.08 normalized entropy on average. Hallucinations
-> score 0.90. No labels, no judge model, just the model contradicting itself.**
-> See the separation: `python -m semanticentropy.eval`.
+> **On a real model (Qwen2.5-0.5B answering 40 trivia questions), semantic
+> entropy predicts which answers are wrong with 0.878 AUROC. No labels, no
+> judge model, just the model contradicting itself.**
+> Zero-dep demo: `python -m semanticentropy.eval`. Real thing:
+> `python -m semanticentropy.realbench`.
 
 Here's a fact worth sitting with, ideally with a coffee: a model that knows
 the answer says the same thing every time you ask it, worded differently. A
@@ -108,18 +110,62 @@ Numbers are normalized ("300,000" and "300000" tokenize the same) and common
 hedges ("about", "roughly", "approximately") are stripped, so magnitude
 agreement is what counts, not phrasing.
 
+## The real thing: a real model, making real mistakes
+
+The synthetic benchmark above proves the math. This one proves the method. It
+runs the actual protocol from the paper against a real local LLM, end to end,
+still with no API keys:
+
+```bash
+pip install -e ".[nli]"                  # torch + transformers, the one opt-in heavyweight
+python -m semanticentropy.realbench
+```
+
+What it does: asks Qwen2.5-0.5B-Instruct 40 short factual questions, once
+greedily (that's the answer you would have shipped) and five more times at
+temperature 1.0. The five samples get clustered by bidirectional NLI
+entailment (cross-encoder/nli-deberta-v3-small), conditioned on the question,
+exactly as in Farquhar et al. Then one question: does entropy alone predict
+which greedy answers were wrong, without ever seeing a gold label?
+
+```
+greedy accuracy        31/40 = 78%
+avg entropy | correct  0.25
+avg entropy | wrong    0.83
+AUROC (entropy -> wrong)  0.878
+```
+
+It does. When the model knew the answer (Canberra, 1912, Fleming), the five
+samples agreed and entropy stayed low. When it was confabulating (it thinks
+J.D. Salinger won the 1976 Nobel and that Verdi wrote The Magic Flute), the
+samples scattered and entropy spiked. 0.878 AUROC from nothing but the model
+disagreeing with itself.
+
+Honest caveats: one small model, 40 hand-curated questions (embedded in the
+repo, no dataset download), lenient string matching for correctness labels,
+and generations cached to a local JSON so re-runs are fast. This is a faithful
+small-scale reproduction of the paper's result, not a leaderboard entry.
+
 ## Bring your own equivalence check
 
-The bag-of-words containment check keeps this dependency-free and fully
-readable. For production, swap `cluster.equivalent(a, b)` for a real
-bidirectional-entailment check with an NLI model, which is what the original
-paper uses. Nothing else changes: the clustering and entropy math only call
-that one function.
+Both checks plug into the same seam, and so can yours:
+
+```python
+from semanticentropy.entropy import SemanticEntropy
+from semanticentropy.nli import NLIEquivalence   # needs the [nli] extra
+
+eq = NLIEquivalence()
+eq.question = "In which year did the Titanic sink?"
+se = SemanticEntropy(equivalence=eq)             # or equivalence=any (a, b) -> bool
+```
+
+Leave `equivalence` unset and you get the zero-dependency containment check,
+which is wrong slightly more often and infinitely easier to debug.
 
 ## Tests
 
 ```bash
-pip install pytest && pytest -q      # 10 passing
+pip install pytest && pytest -q      # 14 passing, +4 NLI tests when [nli] is installed
 ```
 
 ## License
