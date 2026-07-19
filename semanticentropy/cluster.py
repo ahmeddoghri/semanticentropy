@@ -12,6 +12,9 @@ equivalent. Swap in an NLI model at this seam and nothing downstream changes.
 from __future__ import annotations
 
 import re
+from typing import Callable, Optional
+
+Equivalence = Callable[[str, str], bool]
 
 _WORD = re.compile(r"[a-z0-9]+")
 
@@ -56,18 +59,31 @@ def equivalent(a: str, b: str, threshold: float = 0.6) -> bool:
     return coverage >= threshold
 
 
-def cluster_by_meaning(samples: list[str], threshold: float = 0.6) -> list[list[str]]:
+def cluster_by_meaning(
+    samples: list[str],
+    threshold: float = 0.6,
+    equivalence: Optional[Equivalence] = None,
+) -> list[list[str]]:
     """Group samples into meaning clusters.
 
     Greedy single-link clustering: each sample joins the first existing cluster
     it is equivalent to, or starts a new one. Good enough for the short factual
     answers this is designed for, and fully deterministic.
+
+    ``equivalence`` is the seam. Pass any ``(a, b) -> bool`` callable to replace
+    the default containment check, e.g. ``semanticentropy.nli.NLIEquivalence``
+    for real bidirectional entailment (requires the ``[nli]`` extra). When it is
+    None, the zero-dependency containment check is used.
     """
+    if equivalence is None:
+        def equivalence(a: str, b: str) -> bool:
+            return equivalent(a, b, threshold)
+
     clusters: list[list[str]] = []
     for s in samples:
         placed = False
         for cluster in clusters:
-            if equivalent(s, cluster[0], threshold):
+            if equivalence(s, cluster[0]):
                 cluster.append(s)
                 placed = True
                 break

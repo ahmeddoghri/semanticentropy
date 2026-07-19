@@ -15,8 +15,9 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from typing import Optional
 
-from semanticentropy.cluster import cluster_by_meaning
+from semanticentropy.cluster import Equivalence, cluster_by_meaning
 
 
 @dataclass
@@ -47,18 +48,28 @@ class SemanticEntropy:
     ``threshold`` is the normalized-entropy level at or above which the answer is
     flagged as a likely hallucination. The default of 0.5 flags an answer whose
     samples split roughly evenly across two or more distinct meanings.
+
+    ``equivalence`` swaps the meaning-equivalence check. None means the built-in
+    zero-dependency containment check; pass ``semanticentropy.nli.NLIEquivalence``
+    (the ``[nli]`` extra) for real bidirectional entailment.
     """
 
-    def __init__(self, threshold: float = 0.5, cluster_threshold: float = 0.6) -> None:
+    def __init__(
+        self,
+        threshold: float = 0.5,
+        cluster_threshold: float = 0.6,
+        equivalence: Optional[Equivalence] = None,
+    ) -> None:
         self.threshold = threshold
         self.cluster_threshold = cluster_threshold
+        self.equivalence = equivalence
 
     def score(self, samples: list[str]) -> EntropyResult:
         n = len(samples)
         if n == 0:
             return EntropyResult(0.0, 0.0, 0, 0, [], hallucinated=False)
 
-        clusters = cluster_by_meaning(samples, self.cluster_threshold)
+        clusters = cluster_by_meaning(samples, self.cluster_threshold, self.equivalence)
         probs = [len(c) / n for c in clusters]
         entropy = -sum(p * math.log2(p) for p in probs if p > 0) + 0.0  # avoid -0.0
         max_entropy = math.log2(n) if n > 1 else 1.0
