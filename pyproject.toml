@@ -21,6 +21,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=7", "ruff>=0.6"]
+nli = ["transformers>=4.40", "torch>=2.0"]
 
 [project.urls]
 Homepage = "https://github.com/ahmeddoghri/semanticentropy"
