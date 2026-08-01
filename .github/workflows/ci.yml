@@ -28,3 +28,5 @@ jobs:
         run: python examples/quickstart.py
       - name: Run benchmark
         run: python -m semanticentropy.eval
+      - name: Run hedge-masking comparison
+        run: python -m semanticentropy.eval_v2

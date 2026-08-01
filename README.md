@@ -3,7 +3,7 @@
 **Catch hallucinations by asking the model the same thing five times and clustering the answers by meaning.**
 
 ![CI](https://github.com/ahmeddoghri/semanticentropy/actions/workflows/ci.yml/badge.svg)
-![tests](https://img.shields.io/badge/tests-18%20passing-brightgreen)
+![tests](https://img.shields.io/badge/tests-29%20passing-brightgreen)
 ![python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![deps](https://img.shields.io/badge/runtime%20deps-none-success)
 ![license](https://img.shields.io/badge/license-MIT-black)
@@ -13,6 +13,15 @@
 > judge model, just the model contradicting itself.**
 > Zero-dep demo: `python -m semanticentropy.eval`. Real thing:
 > `python -m semanticentropy.realbench`.
+>
+> **Update:** the zero-dependency clustering has a real blind spot. Wrap a
+> genuinely different answer in the kind of confident hedge phrasing real
+> models use ("Based on my knowledge and available historical records,
+> the composer credited with this work was likely Verdi.") and five
+> samples that disagree on the actual answer collapse into one cluster,
+> scoring **0.00 entropy, "consistent."** A model hallucinating fluently
+> was invisible to the exact failure mode this library exists to catch.
+> Fixed: `python -m semanticentropy.eval_v2`.
 
 Here's a fact worth sitting with, ideally with a coffee: a model that knows
 the answer says the same thing every time you ask it, worded differently. A
@@ -146,6 +155,60 @@ repo, no dataset download), lenient string matching for correctness labels,
 and generations cached to a local JSON so re-runs are fast. This is a faithful
 small-scale reproduction of the paper's result, not a leaderboard entry.
 
+## A confident hedge can hide a hallucination from the containment check
+
+The containment check is a coverage ratio: the smaller answer's content
+words just need to mostly appear in the larger one. That's the right idea
+for "Paris" vs. "It is Paris". It breaks the moment a model hedges at
+length, because the shared boilerplate dominates the token overlap and the
+one word that actually differs, the real answer, barely moves the score.
+
+```python
+from semanticentropy.entropy import SemanticEntropy
+
+samples = [
+    "Based on my knowledge and available historical records, the composer "
+    "credited with this work was likely Verdi.",
+    "Based on my knowledge and available historical records, the composer "
+    "credited with this work was likely Mozart.",
+    # ...three more, same wrapper, three more different names
+]
+
+SemanticEntropy(threshold=0.5).score(samples).normalized   # 0.00, "consistent"
+```
+
+Five different named composers, and the built-in check calls it consistent,
+because eleven of the twelve content words are the shared hedge and only
+one differs. That is exactly backwards: disagreement wrapped in fluent,
+confident phrasing is the textbook shape of the hallucination this whole
+method exists to catch.
+
+```bash
+python -m semanticentropy.eval_v2
+```
+```
+corpus / version          caught    recall
+adversarial / v1            0/4        0%
+adversarial / v2            4/4      100%
+
+holdout / v1                 0/3        0%
+holdout / v2                  3/3      100%
+```
+
+`semanticentropy/cluster_v2.py` adds one narrow, high-precision rule on
+top of containment, not a replacement for it: if each answer contains
+exactly one *salient* token, a word capitalized outside the sentence-
+initial position, or a number, and the two differ, the answers are never
+equivalent, no matter how much hedge text they share. A capitalized
+mid-sentence word or a number is almost always the actual named answer.
+Requiring exactly one on each side keeps the rule from misfiring on
+answers that legitimately mention more than one entity. 0% to 100% recall
+on four adversarial hedge patterns and a three-group holdout evaluated
+exactly once, with zero regression on the original ten-question corpus.
+`cluster.py` is untouched, so the published containment behavior and the
+0.878 AUROC real-model result are unaffected; `equivalence=equivalent_v2`
+is opt-in through the same seam `NLIEquivalence` already uses.
+
 ## Bring your own equivalence check
 
 Both checks plug into the same seam, and so can yours:
@@ -165,7 +228,7 @@ which is wrong slightly more often and infinitely easier to debug.
 ## Tests
 
 ```bash
-pip install pytest && pytest -q      # 14 passing, +4 NLI tests when [nli] is installed
+pip install pytest && pytest -q      # 29 passing, +4 NLI tests when [nli] is installed
 ```
 
 ## License
