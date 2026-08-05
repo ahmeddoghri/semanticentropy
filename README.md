@@ -2,7 +2,6 @@
 
 **Catch hallucinations by asking the model the same thing five times and clustering the answers by meaning.**
 
-![CI](https://github.com/ahmeddoghri/semanticentropy/actions/workflows/ci.yml/badge.svg)
 ![tests](https://img.shields.io/badge/tests-29%20passing-brightgreen)
 ![python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![deps](https://img.shields.io/badge/runtime%20deps-none-success)
