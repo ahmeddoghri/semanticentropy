@@ -2,10 +2,13 @@
 
 **Catch hallucinations by asking the model the same thing five times and clustering the answers by meaning.**
 
-![tests](https://img.shields.io/badge/tests-29%20passing-brightgreen)
+[![tests](https://github.com/ahmeddoghri/semanticentropy/actions/workflows/tests.yml/badge.svg)](https://github.com/ahmeddoghri/semanticentropy/actions/workflows/tests.yml)
 ![python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![deps](https://img.shields.io/badge/runtime%20deps-none-success)
 ![license](https://img.shields.io/badge/license-MIT-black)
+[![case study](https://img.shields.io/badge/case%20study-adoghri.com-e0703e)](https://adoghri.com/project-19.html)
+
+![semanticentropy](docs/cover.jpg)
 
 > **On a real model (Qwen2.5-0.5B answering 40 trivia questions), semantic
 > entropy predicts which answers are wrong with 0.878 AUROC. No labels, no
