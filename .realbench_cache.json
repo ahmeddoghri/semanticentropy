@@ -1,0 +1,581 @@
+[
+ {
+  "question": "What is the capital of Australia?",
+  "golds": [
+   "Canberra"
+  ],
+  "greedy": "Canberra",
+  "samples": [
+   "Canberra",
+   "Canberra",
+   "Canberra",
+   "Canberra",
+   "Canberra"
+  ]
+ },
+ {
+  "question": "What is the capital of Canada?",
+  "golds": [
+   "Ottawa"
+  ],
+  "greedy": "Ottawa",
+  "samples": [
+   "Ottawa",
+   "Toronto",
+   "Ottawa",
+   "Toronto",
+   "Ottawa"
+  ]
+ },
+ {
+  "question": "What is the chemical symbol for gold?",
+  "golds": [
+   "Au"
+  ],
+  "greedy": "Au",
+  "samples": [
+   "Au",
+   "Au",
+   "Au",
+   "Au",
+   "Au"
+  ]
+ },
+ {
+  "question": "How many continents are there on Earth?",
+  "golds": [
+   "seven",
+   "7"
+  ],
+  "greedy": "five",
+  "samples": [
+   "6",
+   "seven continents: Asia, Africa, North America, South America, Europe, Australia and Antarctica.",
+   "five",
+   "eight",
+   "seven"
+  ]
+ },
+ {
+  "question": "What planet is known as the Red Planet?",
+  "golds": [
+   "Mars"
+  ],
+  "greedy": "Mars",
+  "samples": [
+   "Mars",
+   "Mars",
+   "Mars",
+   "Mars",
+   "Mars"
+  ]
+ },
+ {
+  "question": "Who wrote the play Romeo and Juliet?",
+  "golds": [
+   "Shakespeare"
+  ],
+  "greedy": "William Shakespeare",
+  "samples": [
+   "William Shakespeare.",
+   "William Shakespeare",
+   "William Shakespeare wrote Romeo and Juliet.",
+   "William Shakespeare",
+   "William Shakespeare"
+  ]
+ },
+ {
+  "question": "What is the largest ocean on Earth?",
+  "golds": [
+   "Pacific"
+  ],
+  "greedy": "Pacific Ocean",
+  "samples": [
+   "Pacific Ocean",
+   "Mediterranean Sea",
+   "Atlantic Ocean",
+   "Pacific Ocean",
+   "Pacific Ocean"
+  ]
+ },
+ {
+  "question": "In which year did World War II end?",
+  "golds": [
+   "1945"
+  ],
+  "greedy": "1945",
+  "samples": [
+   "1945",
+   "1945",
+   "1945",
+   "1945",
+   "1945"
+  ]
+ },
+ {
+  "question": "What is the chemical formula for water?",
+  "golds": [
+   "H2O"
+  ],
+  "greedy": "H2O",
+  "samples": [
+   "H2O",
+   "H2O",
+   "H2O",
+   "H2O",
+   "H2O"
+  ]
+ },
+ {
+  "question": "What is the tallest mountain on Earth above sea level?",
+  "golds": [
+   "Everest"
+  ],
+  "greedy": "Mount Everest",
+  "samples": [
+   "Mount Everest",
+   "Mount Everest",
+   "Mount Everest",
+   "K2 (8,611 meters)",
+   "Mount Everest"
+  ]
+ },
+ {
+  "question": "Which country has the largest population in the world?",
+  "golds": [
+   "India",
+   "China"
+  ],
+  "greedy": "China",
+  "samples": [
+   "China",
+   "China",
+   "China",
+   "China",
+   "China"
+  ]
+ },
+ {
+  "question": "What gas do plants primarily absorb for photosynthesis?",
+  "golds": [
+   "carbon dioxide",
+   "CO2"
+  ],
+  "greedy": "Water",
+  "samples": [
+   "Carbon dioxide",
+   "Carbon dioxide",
+   "Carbon dioxide",
+   "Carbon dioxide",
+   "Water"
+  ]
+ },
+ {
+  "question": "Who painted the Mona Lisa?",
+  "golds": [
+   "Leonardo da Vinci",
+   "da Vinci",
+   "Leonardo"
+  ],
+  "greedy": "Leonardo da Vinci painted the Mona Lisa.",
+  "samples": [
+   "Leonardo da Vinci painted the Mona Lisa.",
+   "Leonardo da Vinci painted the Mona Lisa.",
+   "Leonardo da Vinci painted the Mona Lisa.",
+   "The artist who painted the Mona Lisa is Leonardo da Vinci.",
+   "Francesco del Neri."
+  ]
+ },
+ {
+  "question": "What is the currency of Japan?",
+  "golds": [
+   "yen"
+  ],
+  "greedy": "Yen",
+  "samples": [
+   "yen",
+   "Yen",
+   "Yen",
+   "yen",
+   "Japanese yen (JPY)"
+  ]
+ },
+ {
+  "question": "How many sides does a hexagon have?",
+  "golds": [
+   "six",
+   "6"
+  ],
+  "greedy": "six sides",
+  "samples": [
+   "6 sides.",
+   "6 sides",
+   "6",
+   "six sides",
+   "six sides"
+  ]
+ },
+ {
+  "question": "What is the freezing point of water in degrees Celsius?",
+  "golds": [
+   "0",
+   "zero"
+  ],
+  "greedy": "0\u00b0C",
+  "samples": [
+   "0\u00b0C",
+   "0",
+   "0\u00b0C",
+   "0\u00b0C",
+   "0\u00b0C"
+  ]
+ },
+ {
+  "question": "Which planet is closest to the Sun?",
+  "golds": [
+   "Mercury"
+  ],
+  "greedy": "Mercury",
+  "samples": [
+   "Mercury",
+   "Mercury",
+   "Mercury",
+   "Mercury",
+   "Jupiter"
+  ]
+ },
+ {
+  "question": "What is the longest river in South America?",
+  "golds": [
+   "Amazon"
+  ],
+  "greedy": "Amazon River",
+  "samples": [
+   "Amazon River",
+   "Amazon River",
+   "Amazon River",
+   "Amazon River",
+   "Amazon River"
+  ]
+ },
+ {
+  "question": "In which city is the Eiffel Tower located?",
+  "golds": [
+   "Paris"
+  ],
+  "greedy": "Paris, France",
+  "samples": [
+   "Paris, France",
+   "Paris, France",
+   "Paris, France",
+   "Paris, France",
+   "Paris, France"
+  ]
+ },
+ {
+  "question": "What is the square root of 144?",
+  "golds": [
+   "12",
+   "twelve"
+  ],
+  "greedy": "12",
+  "samples": [
+   "12",
+   "12",
+   "12",
+   "12",
+   "12"
+  ]
+ },
+ {
+  "question": "Who won the Nobel Prize in Literature in 1976?",
+  "golds": [
+   "Saul Bellow",
+   "Bellow"
+  ],
+  "greedy": "J.D. Salinger won the Nobel Prize in Literature in 1976.",
+  "samples": [
+   "J.D. Salinger won the Nobel Prize in Literature in 1976.",
+   "Fyodor Dostoevsky Won",
+   "Nadir Shahi won the Nobel Prize in Literature in 1976 for his poetry and prose works.",
+   "Virginia Woolf won the Nobel Prize in Literature in 1973.",
+   "Fyodor Dostoevsky won the Nobel Prize in Literature in 1974."
+  ]
+ },
+ {
+  "question": "In which year was the city of St. Petersburg founded?",
+  "golds": [
+   "1703"
+  ],
+  "greedy": "1703",
+  "samples": [
+   "1703",
+   "1703",
+   "1703",
+   "16th century",
+   "1703"
+  ]
+ },
+ {
+  "question": "What is the capital of the Canadian province of Saskatchewan?",
+  "golds": [
+   "Regina"
+  ],
+  "greedy": "Saskatchewan's capital is Regina.",
+  "samples": [
+   "Ottawa",
+   "Saskatchewan has its capital in Regina.",
+   "Toronto",
+   "Poultsonston",
+   "Saskatoon"
+  ]
+ },
+ {
+  "question": "Who was the second person to walk on the Moon?",
+  "golds": [
+   "Buzz Aldrin",
+   "Aldrin"
+  ],
+  "greedy": "Edwin E. Aldrin Jr.",
+  "samples": [
+   "Alan Bean",
+   "Eugene Cernan and Frank Baxter.",
+   "Edgar Mitchell",
+   "Edwin E. Aldrin Jr.",
+   "Edwin E. Aldrin Jr. and Neil Armstrong were the second astronauts to step foot on the Moon."
+  ]
+ },
+ {
+  "question": "In which year did the Chernobyl disaster occur?",
+  "golds": [
+   "1986"
+  ],
+  "greedy": "1986",
+  "samples": [
+   "1986",
+   "1986",
+   "1986",
+   "1986",
+   "1986"
+  ]
+ },
+ {
+  "question": "What is the smallest country in Africa by land area?",
+  "golds": [
+   "Seychelles",
+   "Gambia"
+  ],
+  "greedy": "Zambia",
+  "samples": [
+   "Egypt",
+   "Zambia",
+   "Somalia",
+   "South Sudan",
+   "Algeria"
+  ]
+ },
+ {
+  "question": "Who composed the opera The Magic Flute?",
+  "golds": [
+   "Mozart"
+  ],
+  "greedy": "Giuseppe Verdi",
+  "samples": [
+   "Giuseppe Verdi",
+   "Wolfgang Amadeus Mozart.",
+   "Richard Wagner",
+   "The composition of \"The Magic Flute\" was conducted by Donizetti.",
+   "Diego Riveracomposed it."
+  ]
+ },
+ {
+  "question": "In which year was the Hubble Space Telescope launched?",
+  "golds": [
+   "1990"
+  ],
+  "greedy": "1990",
+  "samples": [
+   "1990",
+   "1990",
+   "1990",
+   "1990",
+   "1990"
+  ]
+ },
+ {
+  "question": "What is the capital of Kazakhstan?",
+  "golds": [
+   "Astana",
+   "Nur-Sultan"
+  ],
+  "greedy": "Almaty",
+  "samples": [
+   "Astana",
+   "Almaty",
+   "Almaty",
+   "Almaty",
+   "Almaty"
+  ]
+ },
+ {
+  "question": "Who discovered penicillin?",
+  "golds": [
+   "Fleming",
+   "Alexander Fleming"
+  ],
+  "greedy": "Alexander Fleming discovered penicillin.",
+  "samples": [
+   "Alexander Fleming",
+   "Robert Koch discovered penicillin in 1928.",
+   "Alexander Fleming discovered penicillin.",
+   "It was discovered by Alexander Fleming.",
+   "Alexander Fleming discovered penicillin."
+  ]
+ },
+ {
+  "question": "In which year did the Berlin Wall fall?",
+  "golds": [
+   "1989"
+  ],
+  "greedy": "1989",
+  "samples": [
+   "1989",
+   "1989",
+   "1989",
+   "1989",
+   "1989"
+  ]
+ },
+ {
+  "question": "What is the deepest point in the world's oceans called?",
+  "golds": [
+   "Challenger Deep",
+   "Mariana"
+  ],
+  "greedy": "Mariana Trench",
+  "samples": [
+   "Dead Sea",
+   "Paricutin Peninsula",
+   "Molten Rock Point",
+   "Great Barrier Reef bottom",
+   "Great Barrier Reef."
+  ]
+ },
+ {
+  "question": "Who wrote the novel One Hundred Years of Solitude?",
+  "golds": [
+   "Marquez",
+   "Garcia Marquez",
+   "Gabriel Garcia Marquez"
+  ],
+  "greedy": "Gabriel Garc\u00eda M\u00e1rquez",
+  "samples": [
+   "Gabriel Garc\u00eda M\u00e1rquez",
+   "Gabriel Garc\u00eda M\u00e1rquez",
+   "Gabriel Garc\u00eda M\u00e1rquez",
+   "Cervantes",
+   "Gabriel Garcia Marquez"
+  ]
+ },
+ {
+  "question": "In which year did the Titanic sink?",
+  "golds": [
+   "1912"
+  ],
+  "greedy": "1912",
+  "samples": [
+   "1912",
+   "1912",
+   "1912",
+   "1912",
+   "1912"
+  ]
+ },
+ {
+  "question": "What is the capital of Mongolia?",
+  "golds": [
+   "Ulaanbaatar",
+   "Ulan Bator"
+  ],
+  "greedy": "Ulaanbaatar",
+  "samples": [
+   "Yunghuristan",
+   "Ulaanbaatar",
+   "Tallinn",
+   "Ulaanbaatar",
+   "Ulaanbaatar"
+  ]
+ },
+ {
+  "question": "Which element has the atomic number 79?",
+  "golds": [
+   "gold"
+  ],
+  "greedy": "Gold",
+  "samples": [
+   "Iron",
+   "Mercury",
+   "Silver (Ag)",
+   "Mercury",
+   "mercury"
+  ]
+ },
+ {
+  "question": "Who was the first woman to win a Nobel Prize?",
+  "golds": [
+   "Marie Curie",
+   "Curie"
+  ],
+  "greedy": "Elisabeth Rosenthal",
+  "samples": [
+   "Jenner",
+   "Suzanne Gilot won a Nobel Prize in Literature in 1988.",
+   "The first woman to win a Nobel Prize was Marie Curie.",
+   "Elizabeth II was the first woman to win a Nobel Prize.",
+   "Penelope McClure"
+  ]
+ },
+ {
+  "question": "In which decade was the first email sent?",
+  "golds": [
+   "1970s",
+   "1971"
+  ],
+  "greedy": "1970s",
+  "samples": [
+   "1970s",
+   "1960s",
+   "20th century",
+   "1970s",
+   "1970s"
+  ]
+ },
+ {
+  "question": "What is the second-longest river in Africa?",
+  "golds": [
+   "Congo"
+  ],
+  "greedy": "Nile",
+  "samples": [
+   "Ethiopia's Blue Nile",
+   "Watala River",
+   "Volga River",
+   "Nile",
+   "Nile"
+  ]
+ },
+ {
+  "question": "Which country hosted the 1968 Summer Olympics?",
+  "golds": [
+   "Mexico"
+  ],
+  "greedy": "Switzerland",
+  "samples": [
+   "France",
+   "Italy",
+   "South Africa",
+   "USA",
+   "Switzerland"
+  ]
+ }
+]

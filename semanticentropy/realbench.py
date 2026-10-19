@@ -15,8 +15,9 @@ Protocol, straight from Farquhar et al. (Nature 2024):
 Needs the extras: pip install "semanticentropy[nli]"
 Run: python -m semanticentropy.realbench
 
-Generations are cached to .realbench_cache.json (gitignored) so repeat runs
-skip the slow part. Everything is seeded; the cached file reproduces.
+Generations are cached to .realbench_cache.json, which is committed, so the
+NLI step and the AUROC rerun without generating. Delete it to regenerate;
+everything is seeded and a fresh run reproduces the committed file's result.
 """
 from __future__ import annotations
 

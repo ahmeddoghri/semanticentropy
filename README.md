@@ -1,4 +1,4 @@
-# 🌫️ semanticentropy
+# semanticentropy
 
 **Catch hallucinations by asking the model the same thing five times and clustering the answers by meaning.**
 
@@ -154,8 +154,12 @@ disagreeing with itself.
 
 Honest caveats: one small model, 40 hand-curated questions (embedded in the
 repo, no dataset download), lenient string matching for correctness labels,
-and generations cached to a local JSON so re-runs are fast. This is a faithful
-small-scale reproduction of the paper's result, not a leaderboard entry.
+and the model's generations are committed as `.realbench_cache.json`, so the
+NLI clustering and the AUROC rerun in seconds without regenerating anything.
+Delete that file to regenerate from scratch; a fresh run on 2026-10-19
+reproduced 31/40 greedy accuracy, 0.25 vs 0.83 average entropy, and 0.878
+AUROC exactly. This is a faithful small-scale reproduction of the paper's
+result, not a leaderboard entry.
 
 ## A confident hedge can hide a hallucination from the containment check
 
